@@ -1,4 +1,4 @@
-import styles from '../../../styles/components/Header.module.css';
+import styles from './Header.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 

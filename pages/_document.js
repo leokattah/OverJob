@@ -1,33 +1,24 @@
-import React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
+import React from 'react'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
   render() {
     return (
-      <html>
+      <Html>
         <Head>
-          <title>OverJob</title>
-          <link rel="icon" href=" /favicon.ico " />
-          <meta name="description" content="Plataforma para encontrar vagas" />
+          <title>OverJob</title>        
+          <link rel="icon" href="/images/favicon.ico" />
+          <meta name="description" content="Um lugar para achar vagas de dev" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin="true"
-          />
-          <link
-            href={
-              'https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap'
-            }
-            rel="stylesheet"
-          ></link>
+          <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet" />
         </Head>
         <body>
           <Main />
           <NextScript />
         </body>
-      </html>
-    );
+      </Html>
+    )
   }
 }
-export default MyDocument;
+
+export default MyDocument
