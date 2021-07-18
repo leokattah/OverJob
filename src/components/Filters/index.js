@@ -1,4 +1,4 @@
-import styles from './Filters.modules.css';
+import styles from './Filters.module.css';
 
 function Filters({ category, filters, onChange }) {
   return (

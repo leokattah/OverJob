@@ -18,6 +18,29 @@ export default function Home({ jobs }) {
 
   const [jobList, setJobList] = useState(jobs);
   const [activeFilters, setActiveFilters] = useState({});
+
+
+  const handleSearch = async (title, city) => {
+    if (!title && city) {
+      setJobList(jobs);
+    }
+
+    if (title) {
+      setJobList(jobs.filter(job => job.title.toUpperCase().includes(title.toUpperCase())))
+    }
+
+    if (city) {
+      setJobList(jobs.filter(job => job.city.toUpperCase().includes(city.toUpperCase())))
+    }
+  }
+
+
+
+
+
+
+
+
   const handleToggleFilter = (key, checked, value) => {
     let field;
     switch (key) {
@@ -75,38 +98,39 @@ export default function Home({ jobs }) {
   //No caso abaixo, toda vez que o activeFilters mudar o useEffect vai mudar.
   useEffect(() => {
     let _jobs = [];
-    object.keys(activeFilters).map((key) => {
+    Object.keys(activeFilters).map(key => {
       let found = false;
       if (activeFilters[key].checked) {
         found = true;
-        _jobs = [
-          ...jobs,
-          ...jobs.filter((job) => job[activeFilters[key].field == key]),
-        ];
+        _jobs = [..._jobs, ...jobs.filter(job => job[activeFilters[key].field] == key)];
       }
+
       if (!found) {
         setJobList(jobs);
       } else {
         setJobList(_jobs);
       }
     });
+
   }, [activeFilters]);
 
   return (
     <div className={styles.structure}>
-      <Header />
+      <Header onClick={handleSearch} />
       <div className={styles.cardContainer}>
         <div className={styles.filter}>
           <h4>Definir busca</h4>
-          <div className={filter_list}>
-            {object.Keys(filters).map(key, (index) => (
-              <Filters
-                Key={index}
-                filter={filters[key]}
-                onChange={handleToggleFilter}
-                category={key}
-              />
-            ))}
+          <div className={styles.filter_list}>
+            {
+              Object.keys(filters).map((key, index) => (
+                <Filters
+                  key={index}
+                  filters={filters[key]}
+                  onChange={handleToggleFilter}
+                  category={key}
+                />
+              ))
+            }
           </div>
         </div>
         <div className={styles.cards}>
