@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Link from 'Next/link';
 import styles from '../styles/Home.module.css';
 import Header from '../src/components/Header';
 import Filters from '../src/components/Filters';
 import Card from '../src/components/Card';
 import React from 'react';
+import Link from 'next/link';
 
 export default function Home({ jobs }) {
   const [filters, setFilters] = React.useState({
@@ -74,18 +76,21 @@ export default function Home({ jobs }) {
   //No caso abaixo, toda vez que o activeFilters mudar o useEffect vai mudar.
   useEffect(() => {
     let _jobs = [];
-    object.keys(activeFilters).map(key => {
+    object.keys(activeFilters).map((key) => {
       let found = false;
-      if(activeFilters[key].checked){
-        found=true;
-        _jobs = [...jobs, ...jobs.filter(job => job[activeFilters[key].field == key ])]
+      if (activeFilters[key].checked) {
+        found = true;
+        _jobs = [
+          ...jobs,
+          ...jobs.filter((job) => job[activeFilters[key].field == key]),
+        ];
       }
-      if (!found){
-        setJobList(jobs)
-      }else{
-        setJobList(_jobs  )
+      if (!found) {
+        setJobList(jobs);
+      } else {
+        setJobList(_jobs);
       }
-    })
+    });
   }, [activeFilters]);
 
   return (
@@ -107,16 +112,24 @@ export default function Home({ jobs }) {
         </div>
         <div className={styles.cards}>
           {jobList &&
-            jobList.map((job, index) => {
-              <Card
-                key={index}
-                title={job.title}
-                description={job.description}
-                enterprise={job.enterprise}
-                day={job.day}
-                local={` ${job.city} - ${job.state} `}
-              />;
-            })}
+            jobList.map((job, index) => (
+              <Link
+              href={ ` /description/${job.id} ` }
+              passHref
+              >
+                <a>
+                  <Card
+                    key={index}
+                    title={job.title}
+                    description={job.description}
+                    enterprise={job.enterprise}
+                    day={job.day}
+                    local={` ${job.city} - ${job.state} `}
+                  />
+                  ;
+                </a>
+              </Link>
+            ))}
         </div>
       </div>
     </div>
