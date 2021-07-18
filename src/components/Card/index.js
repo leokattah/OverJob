@@ -5,7 +5,7 @@ function Cards({ title, enterprise, description, day, local }) {
     <div className={styles.card}>
       <div className={styles.content}>
         <h2>{title}</h2>
-        <h2>{enterprise}</h2>
+        <h3>{enterprise}</h3>
         <p>{description}</p>
       </div>
       <div className={styles.details}>

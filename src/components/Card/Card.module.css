@@ -11,7 +11,7 @@ background-color: var(--color-white);
 }
 
 .card h2{
-font-size: 0.6rem;
+font-size: 1.6rem;
 color: var(--color-secondary);
 line-height: 3rem;
 }
