@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Link from 'Next/link';
 import styles from '../styles/Home.module.css';
 import Header from '../src/components/Header';
 import Filters from '../src/components/Filters';
@@ -116,10 +115,10 @@ export default function Home({ jobs }) {
               <Link
               href={ ` /description/${job.id} ` }
               passHref
+              key={index}
               >
                 <a>
                   <Card
-                    key={index}
                     title={job.title}
                     description={job.description}
                     enterprise={job.enterprise}
@@ -133,8 +132,10 @@ export default function Home({ jobs }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
+
+
 
 export async function getStaticProps() {
   const {
